@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* 
+  Tailwind v4 uses @theme to define design tokens.
+  These become CSS custom properties AND Tailwind utility classes automatically.
+*/
+@theme {
+  /* Color palette */
+  --color-ivory: #FAFAFA;
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-emerald: #10B981;
+  --color-emerald-dark: #059669;
+  --color-slate-bg: #F1F5F9;
+
+  /* Font families — referencing the variables set in layout.tsx */
+  --font-family-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-family-heading: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* 
+  Base styles applied to all elements.
+  * = universal selector (targets everything)
+  box-sizing: border-box = padding and border are included in element's total width/height
+  This prevents layout bugs where padding adds to width unexpectedly.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 
+  Smooth scroll behavior — when clicking anchor links (#section),
+  the page scrolls smoothly instead of jumping instantly.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+  Custom bg-gradient-radial utility.
+  Tailwind doesn't include radial gradient by default,
+  so we define it as a CSS class manually.
+  Usage: className="bg-gradient-radial from-emerald-100/40 to-transparent"
+*/
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
