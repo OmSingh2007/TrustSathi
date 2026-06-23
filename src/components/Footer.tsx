@@ -17,6 +17,7 @@
  *  - Emerald brand color pops against navy
  */
 
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
 // ─── LINK DATA ────────────────────────────────────────────────────
@@ -50,7 +51,7 @@ export default function Footer() {
           {/* ── BRAND COLUMN (takes 1 out of 5 columns) ── */}
           <div className="md:col-span-1 flex flex-col gap-4">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center shadow-lg">
                 <ShieldCheck className="w-5 h-5 text-white" strokeWidth={2.5} />
               </div>
@@ -60,7 +61,7 @@ export default function Footer() {
               >
                 Trust<span className="text-[#10B981]">Saathi</span>
               </span>
-            </a>
+            </Link>
 
             {/* Tagline */}
             <p className="text-sm leading-relaxed text-slate-500">

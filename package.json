@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./scripts/create-nojekyll.js",
+    "predeploy": "cross-env NEXT_PUBLIC_BASE_PATH=/trustsaathi npm run build",
+    "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,10 +19,13 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "cross-env": "^10.1.0",
+    "gh-pages": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"

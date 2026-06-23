@@ -11,6 +11,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Menu, X } from "lucide-react";
+import Link from "next/link";
 
 // Navigation link data — easy to add/remove links here
 const NAV_LINKS = [
@@ -62,20 +63,19 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* ── LOGO ── */}
-        <a href="/" className="flex items-center gap-2 group">
-          {/* ShieldCheck icon from Lucide — represents protection and trust */}
-          <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
-            <ShieldCheck className="w-5 h-5 text-white" strokeWidth={2.5} />
-          </div>
-          {/* Brand name — uses Plus Jakarta Sans via the font variable */}
-          <span
-            className="text-xl font-bold text-[#0F172A] tracking-tight"
-            style={{ fontFamily: "var(--font-jakarta)" }}
-          >
-            Trust<span className="text-[#10B981]">Saathi</span>
-          </span>
-        </a>
-
+          <Link href="/" className="flex items-center gap-2 group">
+            {/* ShieldCheck icon from Lucide — represents protection and trust */}
+            <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
+              <ShieldCheck className="w-5 h-5 text-white" strokeWidth={2.5} />
+            </div>
+            {/* Brand name — uses Plus Jakarta Sans via the font variable */}
+            <span
+              className="text-xl font-bold text-[#0F172A] tracking-tight"
+              style={{ fontFamily: "var(--font-jakarta)" }}
+            >
+              Trust<span className="text-[#10B981]">Saathi</span>
+            </span>
+          </Link>
         {/* ── DESKTOP NAV LINKS ── (hidden on mobile) */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
@@ -96,13 +96,28 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* ── CTA BUTTON ── (hidden on mobile) */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* ── CTA BUTTONS ── (hidden on mobile) */}
+        <div className="hidden md:flex items-center gap-3">
+          {/* Login — ghost/outline button */}
+          <Link
+            href="/login"
+            id="navbar-login-btn"
+            className="
+              px-5 py-2.5 rounded-xl text-sm font-semibold
+              text-[#475569] hover:text-[#0F172A]
+              border border-slate-200 hover:border-slate-300
+              transition-all duration-200
+            "
+          >
+            Login
+          </Link>
+
+          {/* Request Demo — solid emerald */}
           <motion.a
             href="#demo"
             id="navbar-cta-btn"
-            whileHover={{ scale: 1.04 }}   // slightly enlarge on hover
-            whileTap={{ scale: 0.97 }}      // slightly shrink on click for tactile feel
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
             className="
               px-5 py-2.5 rounded-xl text-sm font-semibold text-white
               bg-[#10B981] hover:bg-[#059669]
@@ -146,6 +161,13 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium text-[#475569] hover:text-[#0F172A] transition-colors"
+            >
+              Login
+            </Link>
             <a
               href="#demo"
               className="mt-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#10B981] text-center"
