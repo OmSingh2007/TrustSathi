@@ -33,6 +33,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // ─── Types ────────────────────────────────────────────────────────
 // The three screens the user can be on
@@ -61,6 +62,8 @@ const panelVariants: Variants = {
 const OTP_LENGTH = 6; // Number of OTP digit boxes to render
 
 export default function LoginPage() {
+  const router = useRouter();
+  
   // Which screen is currently shown
   const [step, setStep] = useState<AuthStep>("mobile");
 
@@ -462,6 +465,7 @@ export default function LoginPage() {
                 <motion.button
                   id="verify-otp-btn"
                   disabled={!otpComplete}
+                  onClick={() => router.push('/dashboard')}
                   whileHover={otpComplete ? { scale: 1.02 } : {}}
                   whileTap={otpComplete ? { scale: 0.98 } : {}}
                   className="
@@ -593,6 +597,7 @@ export default function LoginPage() {
                 <motion.button
                   id="email-login-btn"
                   disabled={!email || !password}
+                  onClick={() => router.push('/dashboard')}
                   whileHover={email && password ? { scale: 1.02 } : {}}
                   whileTap={email && password ? { scale: 0.98 } : {}}
                   className="
