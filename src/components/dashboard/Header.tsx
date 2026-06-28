@@ -35,7 +35,7 @@ export default function Header() {
   // Normalize: strip any trailing slash so "/digital-ledgers/" becomes "/digital-ledgers".
   // This ensures our lookup map always finds a match even if Next.js appends a trailing slash.
   // The replace() call uses a regex: /\/+$/ means "one or more slashes at the end of the string".
-  // We replace that with an empty string, UNLESS the path is just "/" (the root — don't strip that).
+  // We replace that with an empty string, UNLESS the path is just "/" (the root - don't strip that).
   const pathname = rawPathname === "/" ? rawPathname : rawPathname.replace(/\/+$/, "");
 
   // useState tracks whether the notification dropdown is open or closed.
@@ -143,13 +143,13 @@ export default function Header() {
               </div>
 
               {/*
-               * Notification items — map over an array of objects.
-               * Each object has: icon (emoji), text (message), time (relative), dot (boolean).
+               * Notification items - map over an array of objects.
+               * Each object has: icon (label), text (message), time (relative), dot (boolean).
                */}
               {[
-                { icon: "🔔", text: "FCRA compliance deadline in 12 days", time: "2m ago", dot: true },
-                { icon: "✅", text: "ITR-7 filed successfully for FY 2024-25", time: "1h ago", dot: true },
-                { icon: "⚠️", text: "Section 80G cash donation limit flagged", time: "3h ago", dot: true },
+                { icon: "Alert", text: "FCRA compliance deadline in 12 days", time: "2m ago", dot: true },
+                { icon: "Check", text: "ITR-7 filed successfully for FY 2024-25", time: "1h ago", dot: true },
+                { icon: "Warn", text: "Section 80G cash donation limit flagged", time: "3h ago", dot: true },
               ].map((n, i) => (
                 /*
                  * key={i}: React requires a unique key on list items.
@@ -164,7 +164,7 @@ export default function Header() {
                     <p className="text-xs text-slate-700 leading-snug">{n.text}</p>
                     <p className="text-[10px] text-slate-400 mt-1">{n.time}</p>
                   </div>
-                  {/* Green dot marks each item as unread */}
+                  {/* Solid inner dot - always visible */}
                   {n.dot && <span className="w-1.5 h-1.5 bg-[#10B981] rounded-full flex-shrink-0 mt-1" />}
                 </div>
               ))}
@@ -203,7 +203,7 @@ export default function Header() {
            *
            * Inner span 2 (the solid dot):
            *   - `relative` ensures it renders on TOP of the absolute ping span.
-           *   - Always solid and visible — the static center of the animation.
+           *   - Always solid and visible - the static center of the animation.
            */}
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />

@@ -68,7 +68,7 @@ export default function DashboardLayout({
       {/*
        * ml-64    - left margin of 256px (= sidebar width) so content does NOT
        *            hide behind the fixed sidebar. Since sidebar is `fixed`, it
-       *            floats above the document — we manually push content right.
+       *            floats above the document - we manually push content right.
        *
        * pt-16    - top padding of 64px (= header height) so content does NOT
        *            render behind the fixed header bar.

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * SETTINGS PAGE — TrustSaathi (Placeholder)
+ * SETTINGS PAGE - TrustSaathi (Placeholder)
  * Route: /settings
  *
  * Placeholder settings page so the nav link doesn't 404.

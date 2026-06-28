@@ -8,11 +8,12 @@
  *  - 5 navigation links with Lucide icons and active-state highlighting
  *  - User profile block + logout button at the bottom
  *
- * Design tokens:
- *  #0F172A  -> Navy Blue (sidebar background)
- *  #1E293B  -> Navy Light (hover background)
- *  #10B981  -> Emerald Green (active border + accent)
- *  white    -> Text color on the dark background
+ * Design tokens (Light Theme):
+ *  #FFFFFF  -> Pure White (sidebar background)
+ *  #F0FDF4  -> Emerald-50 (active link background wash)
+ *  #10B981  -> Emerald Green (active text + icon + dot)
+ *  slate-600 -> Inactive link text
+ *  #0F172A  -> Deep Navy (logo + user name text)
  */
 
 import Link from "next/link";
@@ -70,10 +71,10 @@ export default function Sidebar() {
      *  w-64         - 256px wide (16rem)
      *  flex flex-col - stacks children vertically (logo -> nav -> user block)
      *  z-40         - above page content but nav links are still clickable
-     *  bg-[#0F172A] - Navy Blue background (our design system token)
-     *  border-r     - subtle 1px right border separating sidebar from content
+     *  bg-white     - Pure white background (light theme)
+     *  border-r border-slate-200 - subtle 1px light gray right border
      */
-    <aside className="fixed inset-y-0 left-0 w-64 flex flex-col z-40 bg-[#0F172A] border-r border-white/5">
+    <aside className="fixed inset-y-0 left-0 w-64 flex flex-col z-40 bg-white border-r border-slate-200">
 
       {/* LOGO SECTION */}
       {/*
@@ -82,7 +83,7 @@ export default function Sidebar() {
        * border-b: subtle dividing line below the logo area.
        * flex-shrink-0: prevents this block from shrinking when content is tall.
        */}
-      <div className="h-16 flex items-center gap-3 px-5 border-b border-white/5 flex-shrink-0">
+      <div className="h-16 flex items-center gap-3 px-5 border-b border-slate-100 flex-shrink-0">
         {/*
          * LOGO ICON BADGE:
          *  w-9 h-9       - 36px square
@@ -98,8 +99,8 @@ export default function Sidebar() {
 
         {/* BRAND TEXT: product name on top, tagline below */}
         <div>
-          <p className="text-white font-bold text-sm leading-none tracking-wide">TrustSaathi</p>
-          <p className="text-white/40 text-[10px] mt-0.5 tracking-wider uppercase">NGO OS</p>
+          <p className="text-[#0F172A] font-bold text-sm leading-none tracking-wide">TrustSaathi</p>
+          <p className="text-slate-400 text-[10px] mt-0.5 tracking-wider uppercase">NGO OS</p>
         </div>
       </div>
 
@@ -114,7 +115,7 @@ export default function Sidebar() {
       <nav className="flex-1 overflow-y-auto py-4 px-3">
 
         {/* Section label - small uppercase heading above the links */}
-        <p className="text-white/30 text-[10px] uppercase tracking-widest font-semibold px-3 mb-2">
+        <p className="text-slate-400 text-[10px] uppercase tracking-widest font-semibold px-3 mb-2">
           Main Menu
         </p>
 
@@ -130,7 +131,7 @@ export default function Sidebar() {
 
             // Store the icon component in a variable with capital letter.
             // In React, components MUST start with a capital letter.
-            // item.icon is React.ElementType — we can render it as <Icon />.
+            // item.icon is React.ElementType - we can render it as <Icon />.
             const Icon = item.icon;
 
             return (
@@ -144,20 +145,20 @@ export default function Sidebar() {
                  * "group" class: Tailwind's parent-hover mechanism.
                  * Applying `group` to a parent lets child elements use
                  * `group-hover:` prefix to change styles when the PARENT is hovered.
-                 * Example: `group-hover:text-white/70` on the icon changes icon
+                 * Example: `group-hover:text-slate-700` on the icon changes icon
                  * color when the ENTIRE link is hovered, not just the icon itself.
                  *
                  * ACTIVE STATE styles (when isActive = true):
-                 *  bg-[#10B981]/10  - 10% opacity emerald background wash
-                 *  text-[#10B981]   - Emerald text color
-                 *  border-l-2 border-[#10B981] - 2px left border in emerald (the highlight strip)
-                 *  pl-[10px]        - compensate padding for the 2px border (keeps text aligned)
+                 *  bg-emerald-50    - Translucent emerald green background
+                 *  text-[#10B981]   - Emerald Green text color
+                 *  border-l-2 border-[#10B981] - 2px emerald left border
+                 *  pl-[10px]        - compensate for the 2px border so text stays aligned
                  *
                  * INACTIVE STATE styles (when isActive = false):
-                 *  text-white/50    - 50% opacity white (muted)
-                 *  hover:bg-[#1E293B] - slightly lighter navy on hover
-                 *  hover:text-white/90 - near-full white text on hover
-                 *  border-l-2 border-transparent - invisible left border (keeps layout stable)
+                 *  text-slate-600   - Readable slate gray on white background
+                 *  hover:bg-slate-50  - Very light gray on hover
+                 *  hover:text-slate-900 - Darker text on hover for contrast
+                 *  border-l-2 border-transparent - invisible border
                  */}
                 <Link
                   href={item.href}
@@ -166,8 +167,8 @@ export default function Sidebar() {
                     text-sm font-medium transition-all duration-200
                     group relative
                     ${isActive
-                      ? "bg-[#10B981]/10 text-[#10B981] border-l-2 border-[#10B981] pl-[10px]"
-                      : "text-white/50 hover:bg-[#1E293B] hover:text-white/90 border-l-2 border-transparent"
+                      ? "bg-emerald-50 text-[#10B981] border-l-2 border-[#10B981] pl-[10px]"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-2 border-transparent"
                     }
                   `}
                 >
@@ -177,11 +178,11 @@ export default function Sidebar() {
                    * w-4 h-4: 16px icon size.
                    * flex-shrink-0: prevents icon from squishing on narrow screens.
                    * transition-colors: smooth color change on hover.
-                   * group-hover:text-white/70: icon brightens when the whole link is hovered.
+                   * group-hover:text-slate-700: icon darkens when the whole link is hovered.
                    */}
                   <Icon
                     className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                      isActive ? "text-[#10B981]" : "text-white/40 group-hover:text-white/70"
+                      isActive ? "text-[#10B981]" : "text-slate-400 group-hover:text-slate-700"
                     }`}
                   />
 
@@ -210,7 +211,7 @@ export default function Sidebar() {
        * p-4: comfortable padding on all sides.
        * space-y-3: 12px vertical gap between user info row and logout button.
        */}
-      <div className="flex-shrink-0 border-t border-white/5 p-4 space-y-3">
+      <div className="flex-shrink-0 border-t border-slate-100 p-4 space-y-3">
 
         {/* USER INFO ROW: avatar + name/role */}
         <div className="flex items-center gap-3">
@@ -234,8 +235,8 @@ export default function Sidebar() {
              * truncate: adds "..." ellipsis if the name overflows.
              * This is important for a 256px sidebar where long names could break layout.
              */}
-            <p className="text-white text-sm font-semibold truncate">Om Singh</p>
-            <p className="text-white/40 text-xs truncate">Admin</p>
+            <p className="text-[#0F172A] text-sm font-semibold truncate">Om Singh</p>
+            <p className="text-slate-400 text-xs truncate">Admin</p>
           </div>
         </div>
 
@@ -248,14 +249,15 @@ export default function Sidebar() {
          */}
         <button
           className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg
-            text-white/40 hover:text-red-400 hover:bg-red-500/10
+            text-slate-400 hover:text-red-500 hover:bg-red-50
             text-xs font-medium transition-all duration-200 group"
         >
           {/*
            * LogOut icon: changes to red when button is hovered.
-           * group-hover:text-red-400: uses the parent's `group` class to trigger on hover.
+           * group-hover:text-red-500: uses the parent's `group` class to trigger on hover.
+           * On a white bg, red-500 (not red-400) gives better contrast.
            */}
-          <LogOut className="w-3.5 h-3.5 group-hover:text-red-400 transition-colors" />
+          <LogOut className="w-3.5 h-3.5 group-hover:text-red-500 transition-colors" />
           Sign Out
         </button>
       </div>
