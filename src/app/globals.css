@@ -48,3 +48,37 @@ html {
 .bg-gradient-radial {
   background-image: radial-gradient(var(--tw-gradient-stops));
 }
+
+/*
+ * fadeIn animation — used by the notification dropdown panel.
+ * Slides in from slightly above (translateY -4px → 0) while fading in.
+ * Duration controlled by the element's animation shorthand.
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Custom thin scrollbar for the sidebar navigation.
+ * Only visible on Chrome/Edge (webkit-based browsers).
+ * ::-webkit-scrollbar targets the scrollbar track itself.
+ */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px; /* very thin scrollbar */
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent; /* invisible track */
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1); /* faint white thumb */
+  border-radius: 9999px; /* pill-shaped */
+}
